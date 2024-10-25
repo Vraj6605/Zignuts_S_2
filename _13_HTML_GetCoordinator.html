@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Object Coordinates in Image</title>
+    <style>
+        /* Basic styling for the container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #coordDisplay {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsfia6wF2Lg9ETZjzlY7lhya9SzJzoEAg8ng&s" alt="Sample Image" style="max-width: 100%; height: auto;">
+        <p id="coordDisplay">Click on the image to get coordinates</p>
+    </div>
+
+    <script>
+        const image = document.getElementById('image');
+        const coordDisplay = document.getElementById('coordDisplay');
+
+        image.addEventListener('click', (event) => {
+            // Get the bounding rectangle of the image
+            const rect = image.getBoundingClientRect();
+
+            // Calculate the x and y coordinates relative to the image
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            // Display the coordinates
+            coordDisplay.textContent = `Coordinates: X: ${Math.round(x)}, Y: ${Math.round(y)}`;
+        });
+    </script>
+</body>
+</html>
